@@ -1,35 +1,43 @@
-package com.automationpractice;
+package com.automationpractice.base;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-public class BaseTest {
+/**
+ * Handles driver creation
+ */
+public class BrowserDriverFactory {
 
+	private ThreadLocal<WebDriver> driver = new ThreadLocal<WebDriver>();
+	
 	/**
-	 * WebDriver Object
+	 * Constructor
 	 */
-	protected WebDriver driver;
+	public BrowserDriverFactory () {
+	}
 	
 	/**
 	 * Loads the driver
-	 * @param browser
+	 * @param browser browser that will be launched
 	 */
-	private void setUp (String browser) {
+	public WebDriver createDriver (String browser) {
 		
 		switch(browser) {
 		case "chrome":
 			System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
-			driver = new ChromeDriver();
+			driver.set(new ChromeDriver());
 			break;
 		case "firefox":
 			System.setProperty("webdriver.gecko.driver", "src/main/resources/chromedriver.exe");
-			driver = new FirefoxDriver();
+			driver.set(new FirefoxDriver());
 			break;
 		default:
 			System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
-			driver = new ChromeDriver();
+			driver.set(new ChromeDriver());
 			break;
 		}
+		
+		return driver.get();
 	}
 }
