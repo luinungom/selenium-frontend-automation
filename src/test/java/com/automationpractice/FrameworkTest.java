@@ -1,3 +1,4 @@
+package com.automationpractice;
 import org.testng.annotations.Test;
 import com.automationpractice.base.BaseTest;
 import com.automationpractice.base.TestUtilities;
