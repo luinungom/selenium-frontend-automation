@@ -8,6 +8,11 @@
 	<name>Selenium Frontend Automation</name>
 	<description>Frontend automation using Selenium, TestNG and Maven using 'Page Object Model' design</description>
 
+	<properties>
+		<aspectj.version>1.9.5</aspectj.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
 	<dependencies>
 
 		<dependency>
@@ -41,6 +46,19 @@
 			<version>2.14.0</version>
 		</dependency>
 
+		<dependency>
+			<groupId>io.qameta.allure</groupId>
+			<artifactId>allure-testng</artifactId>
+			<version>2.13.8</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.opencsv</groupId>
+			<artifactId>opencsv</artifactId>
+			<version>3.3</version>
+		</dependency>
+
+
 	</dependencies>
 
 	<build>
@@ -64,11 +82,23 @@
 					<suiteXmlFiles>
 						<suiteXmlFile>FrameWorkTestSuite.xml</suiteXmlFile>
 					</suiteXmlFiles>
+					<argLine>
+						-javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
+					</argLine>
 				</configuration>
+				<dependencies>
+					<dependency>
+						<groupId>org.aspectj</groupId>
+						<artifactId>aspectjweaver</artifactId>
+						<version>${aspectj.version}</version>
+					</dependency>
+				</dependencies>
 			</plugin>
 
 		</plugins>
 
 
 	</build>
+
+
 </project>

@@ -40,4 +40,12 @@ public class BaseTest {
 		log.info("Closing driver instance");
 		driver.close();
 	}
+	
+	/**
+	 * Getter to get driver instances
+	 * @return WebDriver;
+	 */
+	public WebDriver getDriver(){
+		return driver;
+	}
 }
