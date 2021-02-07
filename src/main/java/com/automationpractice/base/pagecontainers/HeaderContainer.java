@@ -2,28 +2,31 @@ package com.automationpractice.base.pagecontainers;
 
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
-
-import com.automationpractice.base.BaseTest;
+import io.qameta.allure.Step;
 
 /**
- * This class contains all web elements that belong to the web page header
+ * This class contains all web elements that belong to the web page header.
  * 
  * @author Luis Núñez Gómez
  *
  */
-public class HeaderContainer extends BaseTest{
+public class HeaderContainer extends BasePageObject {
 
-	
-	// Locators
-	
+	// WebElements
 	By logo = By.id("header_logo");
 	By searchBar = By.id("search_query_top");
-	
-	
+
 	// Constructor
 	public HeaderContainer(WebDriver driver, Logger log) {
+		super(driver, log);
+	}
 	
-
-		}
+	@Step("Performing a search in the header search bar with text \"{0}\"")
+	public void headerSearchBar(String text) {
+		log.info("Performing a search in the header search bar with text \""+text+"\"");
+		cleanAndTypeTextbox(searchBar, text);
+		driver.findElement(searchBar).sendKeys(Keys.ENTER);
+	}
 }
