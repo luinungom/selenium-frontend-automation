@@ -15,6 +15,12 @@ import org.testng.annotations.DataProvider;
 
 import com.opencsv.CSVReader;
 
+/**
+ * Class that contains a single method to read CSV data provider files.
+ * 
+ * @author Luis Núñez Gómez
+ *
+ */
 public class CsvDataProviders {
 
 	@DataProvider(name = "csvReader")
