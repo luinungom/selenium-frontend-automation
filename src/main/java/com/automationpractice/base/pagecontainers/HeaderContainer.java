@@ -17,6 +17,7 @@ public class HeaderContainer extends BasePageObject {
 	// WebElements
 	By logo = By.id("header_logo");
 	By searchBar = By.id("search_query_top");
+	By sigInLink = By.linkText("Sign in");
 
 	// Constructor
 	public HeaderContainer(WebDriver driver, Logger log) {
@@ -28,5 +29,11 @@ public class HeaderContainer extends BasePageObject {
 		log.info("Performing a search in the header search bar with text \""+text+"\"");
 		cleanAndTypeTextbox(searchBar, text);
 		driver.findElement(searchBar).sendKeys(Keys.ENTER);
+	}
+	
+	@Step("Clicking the Sign In link")
+	public void clickSigInLink() {
+		log.info("Clicking the Sign In link");
+		click(sigInLink);
 	}
 }

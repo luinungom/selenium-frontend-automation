@@ -52,9 +52,9 @@ public class BasePageObject{
 	 * @param locator of the element to check visibility
 	 * @param timeInSeconds seconds to wait
 	 */
-	@Step("Waiting {1} seconds until the element with locator {0} is visible")
+	@Step("Waiting {1} seconds max until the element with locator {0} is visible")
 	protected void waitForVisibilityOf(By locator, Integer timeInSeconds) {
-		log.info("Waiting "+timeInSeconds+" seconds until the element with locator "+locator+" is visible");
+		log.info("Waiting "+timeInSeconds+" seconds max until the element with locator "+locator+" is visible");
 		for(int i = 0; i<2; i++) {
 			try {
 			waitForExpectedCondition(ExpectedConditions.visibilityOfElementLocated(locator), (timeInSeconds));
@@ -65,7 +65,7 @@ public class BasePageObject{
 	}
 	
 	/**
-	 * Waits 30 seconds until the element is visible. Overloaded version.
+	 * Waits 30 seconds max until the element is visible. Overloaded version.
 	 * @param locator of the element to check visibility
 	 */
 	protected void waitForVisibilityOf(By locator) {
@@ -78,9 +78,9 @@ public class BasePageObject{
 	 * @param contition that must occur
 	 * @param timeOutInSeconds seconds to wait
 	 */
-	@Step("Waiting {0} second(s) until condition {1} occurs")
+	//@Step("Waiting {0} second(s) max until condition {1} occurs")
 	protected void waitForExpectedCondition(ExpectedCondition<WebElement>condition, Integer timeOutInSeconds) {
-		log.info("Waiting "+timeOutInSeconds+" second(s) until condition "+condition+" occurs");
+		//log.info("Waiting "+timeOutInSeconds+" second(s) until condition "+condition+" occurs");
 			WebDriverWait wait = new WebDriverWait(driver, timeOutInSeconds);
 			wait.until(condition);
 		}

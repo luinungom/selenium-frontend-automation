@@ -4,7 +4,7 @@
  <parameter name="browser"  value="firefox"/>
   <test name="SmokeTest" >
     <classes>
-       <class name="com.automationpractice.FrameworkTest" />
+       <class name="com.automationpractice.LoginTests" />
     </classes>
   </test>
   
