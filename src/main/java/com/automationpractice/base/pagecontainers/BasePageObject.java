@@ -7,6 +7,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import io.qameta.allure.Step;
@@ -34,7 +35,7 @@ public class BasePageObject{
 	@Step("Clicking element {0}")
 	protected void click(By locator) {
 		log.info("Clicking element "+locator);
-		waitForVisibilityOf(locator);
+		waitElementToBeClickable(locator);
 		find(locator).click();
 	}
 
@@ -60,6 +61,23 @@ public class BasePageObject{
 			waitForExpectedCondition(ExpectedConditions.visibilityOfElementLocated(locator), (timeInSeconds));
 			}catch(StaleElementReferenceException e) {
 				log.info("Error, element is never visible");
+			}
+		}
+	}
+	
+	/**
+	 * Waits for the specified amount of seconds until the element is visible.
+	 * @param locator of the element to check visibility
+	 * @param timeInSeconds seconds to wait
+	 */
+	@Step("Waiting {1} seconds max until the element with locator {0} is clickable")
+	protected void waitElementToBeClickable(By locator) {
+		log.info("Waiting 30 seconds max until the element with locator "+locator+" is clickable");
+		for(int i = 0; i<2; i++) {
+			try {
+			waitForExpectedCondition(ExpectedConditions.elementToBeClickable(locator), (30));
+			}catch(StaleElementReferenceException e) {
+				log.info("Error, element is never clickable");
 			}
 		}
 	}
@@ -117,6 +135,13 @@ public class BasePageObject{
 			driver.findElement(locator).clear();
 		}
 		driver.findElement(locator).sendKeys(text);
+	}
+	
+	@Step("Selecting value {1} from the drowpdown {0}")
+	protected void dropDownSelector(By locator, String value) {
+		log.info("Selecting value "+value+" from the drowpdown "+locator);
+		Select dropDown = new Select(find(locator));
+		dropDown.selectByVisibleText(value);
 	}
 	
 	

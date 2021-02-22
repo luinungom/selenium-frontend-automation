@@ -7,7 +7,8 @@ import org.openqa.selenium.WebDriver;
 import io.qameta.allure.Step;
 
 /**
- * This class contains all web elements that belong to the web page columns container (authentication).
+ * This class contains all web elements and related actions that belong to 
+ * the web page columns container (authentication).
  * 
  * @author Luis Núñez Gómez
  *
@@ -23,6 +24,12 @@ public class ColumnsContainer extends BasePageObject{
 	By passwordTextbox = By.id("passwd");
 	By addressTextbox = By.id("address1");
 	By cityTextbox = By.id("city");
+	By maleRadioButton = By.id("id_gender1");
+	By stateDropDown = By.id("id_state");
+	By zipCodeDropdown = By.id("postcode");
+	By countryDropdown = By.id("id_country");
+	By mobilePhoneTextbox = By.id("phone_mobile");
+	By addressAliasTextbox = By.id("addressAlias");
 	
 	// Constructor
 	public ColumnsContainer(WebDriver driver, Logger log) {
@@ -71,5 +78,40 @@ public class ColumnsContainer extends BasePageObject{
 		cleanAndTypeTextbox(cityTextbox, city);
 	}
 	
+	@Step("Selecting Male radio button")
+	public void selectMaleRadioButton() {
+		log.info("Selecting Male radio button");
+		click(maleRadioButton);
+	}
+	
+	@Step("Selecting state {0} in the 'State' dropdown")
+	public void selectStateDropDown(String state) {
+		log.info("Selecting state "+state+" in the 'State' dropdown");
+		dropDownSelector(stateDropDown, state);
+	}
+	
+	@Step("Inserting user's zip code {0} in the textbox")
+	public void insertZipCode(String zipCode) {
+		log.info("Inserting the user's zip code "+zipCode+" in the textbox");
+		cleanAndTypeTextbox(zipCodeDropdown, zipCode);
+	}
+	
+	@Step("Selecting country {0} in the 'Country' dropdown")
+	public void selectCountryDropDown(String country) {
+		log.info("Selecting country "+country+" in the 'Country' dropdown");
+		dropDownSelector(countryDropdown, country);
+	}
+	
+	@Step("Inserting user's mobile phone {0} in the textbox")
+	public void insertMobilePhone(String phone) {
+		log.info("Inserting the user's mobile phone "+phone+"in the textbox");
+		cleanAndTypeTextbox(mobilePhoneTextbox, phone);
+	}
+	
+	@Step("Inserting the user's address alias \"{0}\" in the textbox")
+	public void insertAdressAlias(String addressAlias) {
+		log.info("Inserting the user's address alias \""+addressAlias+"\" in the textbox");
+		cleanAndTypeTextbox(addressAliasTextbox, addressAlias);
+	}
 
 }
