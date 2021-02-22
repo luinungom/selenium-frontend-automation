@@ -2,6 +2,7 @@ package com.automationpractice.base.pagecontainers;
 
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -130,12 +131,11 @@ public class BasePageObject{
 	@Step("Inserting text \"{1}\" in the textbox")
 	protected void cleanAndTypeTextbox(By locator, String text) {
 		log.info("Inserting text \""+text+"\" in the textbox");
-		String oldText = driver.findElement(locator).getText();
-		if(oldText.length() !=0) {
-			driver.findElement(locator).clear();
-		}
+		driver.findElement(locator).sendKeys(Keys.CONTROL + "a");
+		driver.findElement(locator).sendKeys(Keys.DELETE);
 		driver.findElement(locator).sendKeys(text);
 	}
+	
 	
 	@Step("Selecting value {1} from the drowpdown {0}")
 	protected void dropDownSelector(By locator, String value) {

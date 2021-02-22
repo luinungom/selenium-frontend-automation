@@ -18,6 +18,7 @@ public class HeaderContainer extends BasePageObject {
 	By logo = By.id("header_logo");
 	By searchBar = By.id("search_query_top");
 	By sigInLink = By.linkText("Sign in");
+	By userName = By.xpath("/html/body/div/div[1]/header/div[2]/div/div/nav/div[1]/a");
 
 	// Constructor
 	public HeaderContainer(WebDriver driver, Logger log) {
@@ -35,5 +36,11 @@ public class HeaderContainer extends BasePageObject {
 	public void clickSigInLink() {
 		log.info("Clicking the Sign In link");
 		click(sigInLink);
+	}
+	
+	@Step("Verifying user name")
+	public String returnUserName() {
+		log.info("Verifying user name");
+		return driver.findElement(userName).getText();
 	}
 }

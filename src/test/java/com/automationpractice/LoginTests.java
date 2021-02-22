@@ -1,6 +1,7 @@
 package com.automationpractice;
 
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 import org.testng.annotations.Test;
 
@@ -49,6 +50,7 @@ public class LoginTests extends BaseTest{
 		// Automated Actions		
 		// Navigate to the web site
 		driver.get("http://automationpractice.com/index.php");
+		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		// Clicks in the Sign In button
 		header.clickSigInLink();
 		// Filling the 'Email Address' text box
@@ -77,6 +79,9 @@ public class LoginTests extends BaseTest{
 		columns.insertMobilePhone(phone);
 		// Inserting user's alias
 		columns.insertAdressAlias(addressAlias);
-		TestUtilities.sleep(5000);
+		// Clicking the Register button
+		columns.clickRegisterButton();
+		
+		TestUtilities.sleep(500000);
 	}
 }

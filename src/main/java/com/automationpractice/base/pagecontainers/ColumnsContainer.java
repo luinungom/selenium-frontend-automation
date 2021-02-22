@@ -29,7 +29,9 @@ public class ColumnsContainer extends BasePageObject{
 	By zipCodeDropdown = By.id("postcode");
 	By countryDropdown = By.id("id_country");
 	By mobilePhoneTextbox = By.id("phone_mobile");
-	By addressAliasTextbox = By.id("addressAlias");
+	By addressAliasTextbox = By.id("alias");
+	By registerButton = By.id("submitAccount");
+	By welcomeAccountText = By.xpath("/html/body/div/div[2]/div/div[3]/div/p");
 	
 	// Constructor
 	public ColumnsContainer(WebDriver driver, Logger log) {
@@ -112,6 +114,12 @@ public class ColumnsContainer extends BasePageObject{
 	public void insertAdressAlias(String addressAlias) {
 		log.info("Inserting the user's address alias \""+addressAlias+"\" in the textbox");
 		cleanAndTypeTextbox(addressAliasTextbox, addressAlias);
+	}
+	
+	@Step("Clicking the register button")
+	public void clickRegisterButton() {
+		log.info("Clicking the register button");
+		click(registerButton);
 	}
 
 }
