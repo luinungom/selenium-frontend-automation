@@ -38,9 +38,10 @@ public class HeaderContainer extends BasePageObject {
 		click(sigInLink);
 	}
 	
-	@Step("Verifying user name")
-	public String returnUserName() {
-		log.info("Verifying user name");
-		return driver.findElement(userName).getText();
+	@Step("Verifying found user name against expected user name")
+	public void verifyUserName(String expectedName) {
+		log.info("Verifying found user name against expected user name");
+		String actualUserName = driver.findElement(userName).getText();
+		assertEqualText(actualUserName, expectedName);
 	}
 }

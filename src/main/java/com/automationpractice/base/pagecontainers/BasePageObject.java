@@ -10,6 +10,7 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 
 import io.qameta.allure.Step;
 
@@ -144,5 +145,10 @@ public class BasePageObject{
 		dropDown.selectByVisibleText(value);
 	}
 	
-	
+	// Assertions
+	@Step("Verifying if found text {0} matches expected text {1}")
+	protected void assertEqualText(String actualText, String expectedText) {
+		log.info("Verifying if found text \""+actualText+"\" matches expected text \""+expectedText+"\"");
+		Assert.assertEquals(actualText, expectedText, "Found text "+actualText+" does not match expected text "+expectedText);
+	}
 }

@@ -121,5 +121,6 @@ public class ColumnsContainer extends BasePageObject{
 		log.info("Clicking the register button");
 		click(registerButton);
 	}
+	
 
 }

@@ -26,7 +26,7 @@ public class BrowserDriverFactory {
 	 */
 	public WebDriver createDriver (String browser) {
 		
-		switch(browser) {
+		switch(browser.toLowerCase()) {
 		case "chrome":
 			log.info("Creating Chrome browser instance");
 			System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");

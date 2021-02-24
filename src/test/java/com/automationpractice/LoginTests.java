@@ -27,7 +27,7 @@ public class LoginTests extends BaseTest{
 	@Test (priority = 1, dataProvider = "csvReader", dataProviderClass = CsvDataProviders.class, description = "Create a new user in the system")
 	@Severity(SeverityLevel.CRITICAL)
 	@Story("Users management")
-	@Description("Test Description: This test creates a new user in the system")
+	@Description("Test Description: This test creates a new user in the system using only required fields")
 	public void createNewUser(Map<String, String> testData) {
 		
 		// Data extracted from the .csv file		
@@ -81,7 +81,7 @@ public class LoginTests extends BaseTest{
 		columns.insertAdressAlias(addressAlias);
 		// Clicking the Register button
 		columns.clickRegisterButton();
-		
-		TestUtilities.sleep(500000);
+		// Verifying the new user creation
+		header.verifyUserName(firstName+" "+lastName);
 	}
 }
