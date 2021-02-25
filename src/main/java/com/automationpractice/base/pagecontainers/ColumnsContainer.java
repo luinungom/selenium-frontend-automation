@@ -17,7 +17,7 @@ import io.qameta.allure.Step;
 public class ColumnsContainer extends BasePageObject{
 
 	// WebElements
-	By emailTextBox = By.id("email_create");
+	By createEmailTextBox = By.id("email_create");
 	By createAccountButton = By.id("SubmitCreate");
 	By firstNameTextbox = By.id("customer_firstname");
 	By lastNameTextbox = By.id("customer_lastname");
@@ -32,6 +32,9 @@ public class ColumnsContainer extends BasePageObject{
 	By addressAliasTextbox = By.id("alias");
 	By registerButton = By.id("submitAccount");
 	By welcomeAccountText = By.xpath("/html/body/div/div[2]/div/div[3]/div/p");
+	By emailTextbox = By.id("email");
+	By loginButton = By.id("SubmitLogin");
+	
 	
 	// Constructor
 	public ColumnsContainer(WebDriver driver, Logger log) {
@@ -39,9 +42,9 @@ public class ColumnsContainer extends BasePageObject{
 	}
 	
 	@Step("Inserting email address {0} in the textbox")
-	public void insertEmailAddress(String emailAddress) {
+	public void insertCreateEmailAddress(String emailAddress) {
 		log.info("Inserting email address "+emailAddress+" in the textbox");
-		cleanAndTypeTextbox(emailTextBox, emailAddress);
+		cleanAndTypeTextbox(createEmailTextBox, emailAddress);
 	}
 	
 	@Step("Clicking the \"Create an account\" button")
@@ -63,7 +66,7 @@ public class ColumnsContainer extends BasePageObject{
 	}
 	
 	@Step("Inserting user password \"{0}\" in the textbox")
-	public void insertPassword(String password) {
+	public void insertCreatePassword(String password) {
 		log.info("Inserting user password \""+password+"\" in the textbox");
 		cleanAndTypeTextbox(passwordTextbox, password);
 	}
@@ -122,5 +125,22 @@ public class ColumnsContainer extends BasePageObject{
 		click(registerButton);
 	}
 	
+	@Step("Inserting email address {0} in the textbox")
+	public void insertEmailAddress(String emailAddress) {
+		log.info("Inserting email address "+emailAddress+" in the textbox");
+		cleanAndTypeTextbox(emailTextbox, emailAddress);
+	}
+	
+	@Step("Inserting user password \"{0}\" in the textbox")
+	public void insertPassword(String password) {
+		log.info("Inserting user password \""+password+"\" in the textbox");
+		cleanAndTypeTextbox(passwordTextbox, password);
+	}
+	
+	@Step("Clicking the \"Sign In\" button")
+	public void clickSignInButton() {
+		log.info("Clicking the \"Sign In\" button");
+		click(loginButton);
+	}
 
 }

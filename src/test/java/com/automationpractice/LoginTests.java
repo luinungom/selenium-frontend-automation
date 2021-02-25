@@ -50,11 +50,12 @@ public class LoginTests extends BaseTest{
 		// Automated Actions		
 		// Navigate to the web site
 		driver.get("http://automationpractice.com/index.php");
+		// Add implicit wait
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		// Clicks in the Sign In button
 		header.clickSigInLink();
 		// Filling the 'Email Address' text box
-		columns.insertEmailAddress(email);
+		columns.insertCreateEmailAddress(email);
 		// Clicking the 'Create an account' button
 		columns.clickCreateAccountButton();
 		// Selecting the male radio button
@@ -64,7 +65,7 @@ public class LoginTests extends BaseTest{
 		// Inserting user's last name in the text box
 		columns.insertLastName(lastName);
 		// Inserting user's password in the text box
-		columns.insertPassword(password);
+		columns.insertCreatePassword(password);
 		// Inserting user's address
 		columns.insertAddress(address);
 		// Inserting user's city
@@ -81,7 +82,44 @@ public class LoginTests extends BaseTest{
 		columns.insertAdressAlias(addressAlias);
 		// Clicking the Register button
 		columns.clickRegisterButton();
+		
+		//Assertions
 		// Verifying the new user creation
+		header.verifyUserName(firstName+" "+lastName);
+	}
+	
+	@Test (priority = 1, dataProvider = "csvReader", dataProviderClass = CsvDataProviders.class, description = "Log a existing user in the system")
+	@Severity(SeverityLevel.CRITICAL)
+	@Story("Users management")
+	@Description("Test Description: This test log an existing user in the system")
+	public void logExistingUser(Map<String, String> testData) {
+		
+		// Data extracted from the .csv file		
+		String email = testData.get("email");
+		String password = testData.get("password");
+		String firstName = testData.get("firstName");
+		String lastName = testData.get("lastName");
+		
+		// Instance necessary web site components		
+		HeaderContainer header = new HeaderContainer(driver, log);
+		ColumnsContainer columns = new ColumnsContainer(driver, log);
+		
+		// Automated Actions		
+		// Navigate to the web site
+		driver.get("http://automationpractice.com/index.php");
+		// Add implicit wait
+		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+		// Clicking in the Sign In button
+		header.clickSigInLink();
+		// Inserting user's email
+		columns.insertEmailAddress(email);
+		// Inserting user's password
+		columns.insertPassword(password);
+		// Clicking the Sign In button
+		columns.clickSignInButton();
+		
+		// Assertions
+		// Verifying the new user login
 		header.verifyUserName(firstName+" "+lastName);
 	}
 }

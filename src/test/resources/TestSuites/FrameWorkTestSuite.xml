@@ -1,12 +1,12 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
   
 <suite name="User management suite" verbose="2" parallel = "tests" thread-count="3">
-  <test name="New user creation using Firefox browser">
+<!--   <test name="New user creation using Firefox browser">
    <parameter name="browser" value="Firefox"/>
     <classes>
        <class name="com.automationpractice.LoginTests" />
     </classes>
-  </test>
+  </test> -->
   
     <test name="New user creation using Chrome browser">
        <parameter name="browser" value="Chrome"/>
