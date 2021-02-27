@@ -34,6 +34,7 @@ public class ColumnsContainer extends BasePageObject{
 	By welcomeAccountText = By.xpath("/html/body/div/div[2]/div/div[3]/div/p");
 	By emailTextbox = By.id("email");
 	By loginButton = By.id("SubmitLogin");
+	By incorrectCreateEmailErrorMessage = By.xpath("//div[@id='create_account_error']//li[.='Invalid email address.']");
 	
 	
 	// Constructor
@@ -141,6 +142,13 @@ public class ColumnsContainer extends BasePageObject{
 	public void clickSignInButton() {
 		log.info("Clicking the \"Sign In\" button");
 		click(loginButton);
+	}
+	
+	@Step("Verifing the incorrect email error text")
+	public void verifyIncorrectEmailErrorMessage(String expectedErrorMessage) {
+		log.info("Verifing the incorrect email error text");
+		String actualErrorMessage = driver.findElement(incorrectCreateEmailErrorMessage).getText();
+		assertEqualText(actualErrorMessage, expectedErrorMessage);
 	}
 
 }

@@ -25,7 +25,7 @@ import io.qameta.allure.Story;
 public class LoginTests extends BaseTest{
 	
 	@Test (priority = 1, dataProvider = "csvReader", dataProviderClass = CsvDataProviders.class, description = "Create a new user in the system")
-	@Severity(SeverityLevel.CRITICAL)
+	@Severity(SeverityLevel.BLOCKER)
 	@Story("Users management")
 	@Description("Test Description: This test creates a new user in the system using only required fields")
 	public void createNewUser(Map<String, String> testData) {
@@ -89,7 +89,7 @@ public class LoginTests extends BaseTest{
 	}
 	
 	@Test (priority = 1, dataProvider = "csvReader", dataProviderClass = CsvDataProviders.class, description = "Log a existing user in the system")
-	@Severity(SeverityLevel.CRITICAL)
+	@Severity(SeverityLevel.BLOCKER)
 	@Story("Users management")
 	@Description("Test Description: This test log an existing user in the system")
 	public void logExistingUser(Map<String, String> testData) {
@@ -121,5 +121,33 @@ public class LoginTests extends BaseTest{
 		// Assertions
 		// Verifying the new user login
 		header.verifyUserName(firstName+" "+lastName);
+	}
+	
+	@Test (priority = 2, description = "Try to create a new user using an incorrect email")
+	@Severity(SeverityLevel.CRITICAL)
+	@Story("Users management")
+	@Description("Test Description: This test tries to create a new user using an incorrect email")
+	public void incorrectEmail() {
+		
+		// Instance necessary web site components		
+		HeaderContainer header = new HeaderContainer(driver, log);
+		ColumnsContainer columns = new ColumnsContainer(driver, log);
+		
+		String expectedErrorMessage = "Invalid email address.";
+		
+		// Automated Actions		
+		// Navigate to the web site
+		driver.get("http://automationpractice.com/index.php");
+		// Add implicit wait
+		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+		// Clicking in the Sign In button
+		header.clickSigInLink();
+		// Inserting user's email
+		columns.insertCreateEmailAddress("incorrectEmail@fail");
+		// Clicking the 'Create an account' button
+		columns.clickCreateAccountButton();
+		
+		// Assertions
+		columns.verifyIncorrectEmailErrorMessage(expectedErrorMessage);
 	}
 }
