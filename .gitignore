@@ -1,2 +1,3 @@
 test-output/
-
+allure-results/
+target/surefire-reports/
