@@ -17,16 +17,16 @@ import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.Story;
 
 /**
- * This class contains all automated steps for the test.
+ * This class contains all user's management automated steps for the tests.
  * 
- * @author Luis Núñez Gómez
+ * @author Luis Núñez
  *
  */
 public class LoginTests extends BaseTest{
 	
 	@Test (priority = 1, dataProvider = "csvReader", dataProviderClass = CsvDataProviders.class, description = "Create a new user in the system")
 	@Severity(SeverityLevel.BLOCKER)
-	@Story("Users management")
+	@Story("Users management functionality")
 	@Description("Test Description: This test creates a new user in the system using only required fields")
 	public void createNewUser(Map<String, String> testData) {
 		

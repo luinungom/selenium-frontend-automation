@@ -6,6 +6,7 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
@@ -145,10 +146,22 @@ public class BasePageObject{
 		dropDown.selectByVisibleText(value);
 	}
 	
+	@Step("Hovering over {0} web element")
+	protected void hoverOver(By locator) {
+		log.info("Hovering over "+locator+" web element");
+		waitForVisibilityOf(locator);
+		Actions hover = new Actions(driver);
+		WebElement target = driver.findElement(locator);
+		hover.moveToElement(target);
+		hover.perform();
+		hover.build();
+	}
+	
 	// Assertions
 	@Step("Verifying if found text {0} matches expected text {1}")
 	protected void assertEqualText(String actualText, String expectedText) {
 		log.info("Verifying if found text \""+actualText+"\" matches expected text \""+expectedText+"\"");
 		Assert.assertEquals(actualText, expectedText, "Found text "+actualText+" does not match expected text "+expectedText);
 	}
+	
 }

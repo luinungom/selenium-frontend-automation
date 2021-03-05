@@ -1,8 +1,11 @@
 package com.automationpractice.base.pagecontainers;
 
+import java.util.List;
+
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 import io.qameta.allure.Step;
 
@@ -16,7 +19,7 @@ import io.qameta.allure.Step;
 
 public class ColumnsContainer extends BasePageObject{
 
-	// WebElements
+	// Locators
 	By createEmailTextBox = By.id("email_create");
 	By createAccountButton = By.id("SubmitCreate");
 	By firstNameTextbox = By.id("customer_firstname");
@@ -35,6 +38,7 @@ public class ColumnsContainer extends BasePageObject{
 	By emailTextbox = By.id("email");
 	By loginButton = By.id("SubmitLogin");
 	By incorrectCreateEmailErrorMessage = By.xpath("//div[@id='create_account_error']//li[.='Invalid email address.']");
+	By productsList = By.xpath("//div[@id='center_column']/ul");
 	
 	
 	// Constructor
@@ -149,6 +153,18 @@ public class ColumnsContainer extends BasePageObject{
 		log.info("Verifing the incorrect email error text");
 		String actualErrorMessage = driver.findElement(incorrectCreateEmailErrorMessage).getText();
 		assertEqualText(actualErrorMessage, expectedErrorMessage);
+	}
+	
+	public void productListSelection(String name) {
+		WebElement productsGrid = driver.findElement(productsList);
+		List <WebElement> productsList = productsGrid.findElements(By.className("product_img_link"));
+		for(WebElement p : productsList) {
+			if(p.getAttribute("title").equals(name)) {
+				String tempotalXpath = p.getAttribute("xpath");
+				By temporal = By.xpath(tempotalXpath);
+				hoverOver(temporal);
+			}
+		}
 	}
 
 }
