@@ -29,11 +29,13 @@ public class OrderingTests extends BaseTest{
 	@Severity(SeverityLevel.CRITICAL)
 	@Story("Order/Buying functionality")
 	@Description("Automate End to End Buy Order a product in the website")
-	public void orderTShirt(Map <String, String> testData) {
+	public void orderProduct(Map <String, String> testData) {
 		
 		// Data extracted from the .csv file
 		String email = testData.get("email");
 		String password = testData.get("password");
+		String product = testData.get("product");
+		int quantity = Integer.parseInt(testData.get("quantiy"));
 		
 		// Instance necessary web site components	
 		HeaderContainer header = new HeaderContainer(driver, log);
@@ -57,7 +59,9 @@ public class OrderingTests extends BaseTest{
 		// Clicking the T-Shirt link
 		header.clickTShirtLink();
 		// Selecting product with the specified name
-		columns.productListSelection(password);
+		columns.productListSelection(product);
+		// Selecting the specified quantity
+		columns.quantitySelector(quantity);
 		TestUtilities.sleep(50000);
 	}
 

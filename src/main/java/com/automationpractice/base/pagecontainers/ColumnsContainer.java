@@ -39,7 +39,10 @@ public class ColumnsContainer extends BasePageObject{
 	By loginButton = By.id("SubmitLogin");
 	By incorrectCreateEmailErrorMessage = By.xpath("//div[@id='create_account_error']//li[.='Invalid email address.']");
 	By productsList = By.xpath("//div[@id='center_column']/ul");
-	
+	By productMoreButton = By.xpath("//div[@id='center_column']/ul//div[@class='product-container']//a[@title='View']/span[.='More']");
+	By quantityTextbox = By.id("quantity_wanted");
+	By increaseQuantityButton = By.cssSelector("p#quantity_wanted_p > .btn.btn-default.button-plus.product_quantity_up");
+	By decreaseQuantityButton = By.cssSelector("p#quantity_wanted_p > .btn.btn-default.button-minus.product_quantity_down");
 	
 	// Constructor
 	public ColumnsContainer(WebDriver driver, Logger log) {
@@ -124,30 +127,48 @@ public class ColumnsContainer extends BasePageObject{
 		cleanAndTypeTextbox(addressAliasTextbox, addressAlias);
 	}
 	
+	/**
+	 * Clicks the 'Register' button
+	 */
 	@Step("Clicking the register button")
 	public void clickRegisterButton() {
 		log.info("Clicking the register button");
 		click(registerButton);
 	}
 	
+	/**
+	 * Inserts the provided email
+	 * @param String emailAddress
+	 */
 	@Step("Inserting email address {0} in the textbox")
 	public void insertEmailAddress(String emailAddress) {
 		log.info("Inserting email address "+emailAddress+" in the textbox");
 		cleanAndTypeTextbox(emailTextbox, emailAddress);
 	}
 	
+	/**
+	 * Inserts the provided password string
+	 * @param String password
+	 */
 	@Step("Inserting user password \"{0}\" in the textbox")
 	public void insertPassword(String password) {
 		log.info("Inserting user password \""+password+"\" in the textbox");
 		cleanAndTypeTextbox(passwordTextbox, password);
 	}
 	
+	/**
+	 * Clicks the 'Sign In' button
+	 */
 	@Step("Clicking the \"Sign In\" button")
 	public void clickSignInButton() {
 		log.info("Clicking the \"Sign In\" button");
 		click(loginButton);
 	}
 	
+	/**
+	 * Verifies if the incorrect email message is displayed and the present text
+	 * @param String expectedErrorMessage
+	 */
 	@Step("Verifing the incorrect email error text")
 	public void verifyIncorrectEmailErrorMessage(String expectedErrorMessage) {
 		log.info("Verifing the incorrect email error text");
@@ -155,16 +176,43 @@ public class ColumnsContainer extends BasePageObject{
 		assertEqualText(actualErrorMessage, expectedErrorMessage);
 	}
 	
-	public void productListSelection(String name) {
+	/**
+	 * Hovers and clicks the 'More' button of the specified product from the product
+	 * list
+	 * @param String productName
+	 */
+	@Step("Selecting 'More' view for the product '{0}'")
+	public void productListSelection(String productName) {
+		log.info("Selecting 'More' view for the product "+productName);
 		WebElement productsGrid = driver.findElement(productsList);
 		List <WebElement> productsList = productsGrid.findElements(By.className("product_img_link"));
 		for(WebElement p : productsList) {
-			if(p.getAttribute("title").equals(name)) {
-				String tempotalXpath = p.getAttribute("xpath");
-				By temporal = By.xpath(tempotalXpath);
-				hoverOver(temporal);
+			if(p.getAttribute("title").equals(productName)) {
+				hoverOver(p);
+				click(productMoreButton);
 			}
 		}
+	}
+	
+	/**
+	 * Checks the initial units of the product and increases/decreases the quantity
+	 * until it matches the expected one.
+	 * @param int quantity
+	 */
+	@Step("Selecting {0} units of the product")
+	public void quantitySelector(int quantity) {
+		log.info("Selecting "+quantity+" units of the product");
+		int selectedQuantity;
+		do {
+			selectedQuantity = Integer.parseInt(driver.findElement(quantityTextbox).getAttribute("value"));
+			System.out.println("CANTIDAD "+selectedQuantity);
+			if(selectedQuantity < quantity) {
+				click(increaseQuantityButton);
+			}
+			if(selectedQuantity > quantity) {
+				click(decreaseQuantityButton);
+			}
+		}while(selectedQuantity != quantity);
 	}
 
 }

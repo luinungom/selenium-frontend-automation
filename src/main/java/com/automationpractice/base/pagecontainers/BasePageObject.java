@@ -157,6 +157,20 @@ public class BasePageObject{
 		hover.build();
 	}
 	
+	/**
+	 * Overloaded version of the hoverOver method to accept a WebElement as
+	 * parameter
+	 * @param element WebElement
+	 */
+	@Step("\"Hovering over {0} web element\"")
+	protected void hoverOver(WebElement element) {
+		log.info("Hovering over "+element+" web element");
+		Actions hover = new Actions(driver);
+		hover.moveToElement(element);
+		hover.perform();
+		hover.build();
+	}
+	
 	// Assertions
 	@Step("Verifying if found text {0} matches expected text {1}")
 	protected void assertEqualText(String actualText, String expectedText) {
