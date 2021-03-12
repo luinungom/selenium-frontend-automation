@@ -35,7 +35,9 @@ public class OrderingTests extends BaseTest{
 		String email = testData.get("email");
 		String password = testData.get("password");
 		String product = testData.get("product");
-		int quantity = Integer.parseInt(testData.get("quantiy"));
+		int quantity = Integer.parseInt(testData.get("quantity"));
+		String size = testData.get("size");
+		String color = testData.get("color");
 		
 		// Instance necessary web site components	
 		HeaderContainer header = new HeaderContainer(driver, log);
@@ -62,6 +64,15 @@ public class OrderingTests extends BaseTest{
 		columns.productListSelection(product);
 		// Selecting the specified quantity
 		columns.quantitySelector(quantity);
+		// Selecting the specified size
+		columns.sizeSelector(size);
+		// Selecting the specified color
+		columns.colorSelector(color);
+		// Clicking the Add to card button
+		columns.clickAddToCardButton();
+		// Clicking the Proceed to checkout button
+		header.clickCheckOutButton();
+	
 		TestUtilities.sleep(50000);
 	}
 

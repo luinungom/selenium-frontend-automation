@@ -160,7 +160,7 @@ public class BasePageObject{
 	/**
 	 * Overloaded version of the hoverOver method to accept a WebElement as
 	 * parameter
-	 * @param element WebElement
+	 * @param element WebElement-
 	 */
 	@Step("\"Hovering over {0} web element\"")
 	protected void hoverOver(WebElement element) {

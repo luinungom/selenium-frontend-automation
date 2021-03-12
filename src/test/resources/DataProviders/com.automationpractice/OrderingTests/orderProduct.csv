@@ -1,2 +1,2 @@
-no,email,password,firstName,lastName,product
-1,test468@gmail.com,admin1234,John,Doe,Faded Short Sleeve T-shirts,
+no,email,password,firstName,lastName,product,quantity,size,color
+1,test468@gmail.com,admin1234,John,Doe,Faded Short Sleeve T-shirts,2,L,blue,

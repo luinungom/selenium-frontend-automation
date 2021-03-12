@@ -43,12 +43,16 @@ public class ColumnsContainer extends BasePageObject{
 	By quantityTextbox = By.id("quantity_wanted");
 	By increaseQuantityButton = By.cssSelector("p#quantity_wanted_p > .btn.btn-default.button-plus.product_quantity_up");
 	By decreaseQuantityButton = By.cssSelector("p#quantity_wanted_p > .btn.btn-default.button-minus.product_quantity_down");
+	By sizeDropdown = By.id("group_1");
+	By colorPicker = By.id("color_to_pick_list");
+	By addToCartButton = By.xpath("//p[@id='add_to_cart']/button[@name='Submit']");
 	
 	// Constructor
 	public ColumnsContainer(WebDriver driver, Logger log) {
 		super(driver, log);
 	}
 	
+	// Methods
 	@Step("Inserting email address {0} in the textbox")
 	public void insertCreateEmailAddress(String emailAddress) {
 		log.info("Inserting email address "+emailAddress+" in the textbox");
@@ -205,7 +209,6 @@ public class ColumnsContainer extends BasePageObject{
 		int selectedQuantity;
 		do {
 			selectedQuantity = Integer.parseInt(driver.findElement(quantityTextbox).getAttribute("value"));
-			System.out.println("CANTIDAD "+selectedQuantity);
 			if(selectedQuantity < quantity) {
 				click(increaseQuantityButton);
 			}
@@ -213,6 +216,41 @@ public class ColumnsContainer extends BasePageObject{
 				click(decreaseQuantityButton);
 			}
 		}while(selectedQuantity != quantity);
+	}
+	
+	/**
+	 * Selects the specified size from the size drop down selector
+	 * @param String size
+	 */
+	@Step("Selecting size {0}")
+	public void sizeSelector(String size) {
+		log.info("Selecting size "+size);
+		dropDownSelector(sizeDropdown, size);
+	}
+	
+	/**
+	 * Selects the specified color from the color picker
+	 * @param String color
+	 */
+	@Step("Selecting color {0}")
+	public void colorSelector(String color) {
+		log.info("Selecting color "+color);
+		WebElement availableColors = driver.findElement(colorPicker);
+		List <WebElement> colorList = availableColors.findElements(By.className("color_pick"));
+		for(WebElement c : colorList) {
+			if(c.getAttribute("name").equalsIgnoreCase(color)) {
+				c.click();
+			}
+		}
+	}
+	
+	/**
+	 * Clicks the Add to cart button
+	 */
+	@Step("Clicking the Add to cart button")
+	public void clickAddToCardButton() {
+		log.info("Clicking the Add to cart button");
+		click(addToCartButton);
 	}
 
 }

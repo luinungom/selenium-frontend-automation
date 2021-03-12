@@ -21,6 +21,7 @@ public class HeaderContainer extends BasePageObject {
 	By userName = By.xpath("/html/body/div/div[1]/header/div[2]/div/div/nav/div[1]/a");
 	By womenLink = By.linkText("WOMEN");
 	By tShirtLink = By.xpath("//div[@id='block_top_menu']/ul/li[1]/ul/li[1]/ul//a[@title='T-shirts']");
+	By checkOutButton = By.linkText("Proceed to checkout");
 
 	// Constructor
 	public HeaderContainer(WebDriver driver, Logger log) {
@@ -53,9 +54,21 @@ public class HeaderContainer extends BasePageObject {
 		hoverOver(womenLink);
 	}
 	
+	/**
+	 * Clicks the T-shirt link
+	 */
 	@Step("Clicking the T-Shirt link")
 	public void clickTShirtLink() {
 		log.info("Clicking the T-Shirt link");
 		click(tShirtLink);
+	}
+	
+	/**
+	 * Clicks in the Proceed to checkout button
+	 */
+	@Step("Clicking the Proceed to checkout button")
+	public void clickCheckOutButton() {
+		log.info("Clicking the Proceed to checkout button");
+		click(checkOutButton);
 	}
 }
