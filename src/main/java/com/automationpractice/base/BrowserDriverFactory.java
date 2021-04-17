@@ -5,6 +5,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
+
 /**
  * Handles driver creation
  */
@@ -29,17 +31,17 @@ public class BrowserDriverFactory {
 		switch(browser.toLowerCase()) {
 		case "chrome":
 			log.info("Creating Chrome browser instance");
-			System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
+			WebDriverManager.chromedriver().setup();
 			driver.set(new ChromeDriver());
 			break;
 		case "firefox":
 			log.info("Creating Firefox browser instance");
-			System.setProperty("webdriver.gecko.driver", "src/main/resources/geckodriver.exe");
+			WebDriverManager.firefoxdriver().setup();
 			driver.set(new FirefoxDriver());
 			break;
 		default:
 			log.info("Unable to resolve specified browser, creating Chrome browser instance by default");
-			System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
+			WebDriverManager.chromedriver().setup();
 			driver.set(new ChromeDriver());
 			break;
 		}

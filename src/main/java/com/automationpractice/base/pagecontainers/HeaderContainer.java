@@ -44,7 +44,7 @@ public class HeaderContainer extends BasePageObject {
 	@Step("Verifying found user name against expected user name")
 	public void verifyUserName(String expectedName) {
 		log.info("Verifying found user name against expected user name");
-		String actualUserName = driver.findElement(userName).getText();
+		String actualUserName = find(userName).getText();
 		assertEqualText(actualUserName, expectedName);
 	}
 	

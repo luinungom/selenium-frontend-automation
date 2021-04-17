@@ -38,6 +38,7 @@ public class OrderingTests extends BaseTest{
 		int quantity = Integer.parseInt(testData.get("quantity"));
 		String size = testData.get("size");
 		String color = testData.get("color");
+		String payment = testData.get("payment");
 		
 		// Instance necessary web site components	
 		HeaderContainer header = new HeaderContainer(driver, log);
@@ -70,8 +71,24 @@ public class OrderingTests extends BaseTest{
 		columns.colorSelector(color);
 		// Clicking the Add to card button
 		columns.clickAddToCardButton();
-		// Clicking the Proceed to checkout button
+		// Clicking the Proceed to checkout button form the modal
 		header.clickCheckOutButton();
+		// Clicking the Proceed to checkout button from the summary page
+		columns.autoProceedToCheckoutClicker();
+		// Clicking the Proceed to checkout button from the address page
+		columns.autoProceedToCheckoutClicker();
+		// Check the terms of service checkbox
+		columns.checkTermsCheckbox();
+		// Clicking the Proceed to checkout button from the shipping page
+		columns.autoProceedToCheckoutClicker();
+		// Select the payment method
+		columns.paymentSelector(payment);
+		// Clicking the Confirm my order button
+		columns.clickConfirmOrderButton();
+		
+		// Assertions
+		// Verify order confimration
+		
 	
 		TestUtilities.sleep(50000);
 	}

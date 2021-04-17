@@ -7,7 +7,6 @@ import org.testng.annotations.Test;
 
 import com.automationpractice.base.BaseTest;
 import com.automationpractice.base.CsvDataProviders;
-import com.automationpractice.base.TestUtilities;
 import com.automationpractice.base.pagecontainers.ColumnsContainer;
 import com.automationpractice.base.pagecontainers.HeaderContainer;
 

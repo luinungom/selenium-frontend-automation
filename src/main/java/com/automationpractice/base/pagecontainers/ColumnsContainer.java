@@ -46,6 +46,15 @@ public class ColumnsContainer extends BasePageObject{
 	By sizeDropdown = By.id("group_1");
 	By colorPicker = By.id("color_to_pick_list");
 	By addToCartButton = By.xpath("//p[@id='add_to_cart']/button[@name='Submit']");
+	By currentStepIndicator = By.id("order_step");
+	By summaryProceedToCheckoutButton = By.xpath("//div[@id='center_column']//a[@title='Proceed to checkout']");
+	By addressProceedToCheckoutButton = By.xpath("//div[@id='center_column']/form[@action='http://automationpractice.com/index.php?controller=order']//button/span");
+	By termsCheckbox = By.id("uniform-cgv");
+	By shippingProceedToCheckoutButton = By.xpath("//form[@id='form']//button[@name='processCarrier']/span");
+	By payBankWireButton = By.linkText("Pay by bank wire (order processing will be longer)");
+	By payCheckButton = By.linkText("Pay by check (order processing will be longer)");
+	By orderConfirmationButton = By.xpath("//p[@id='cart_navigation']/button[@type='submit']");
+	By orderResultText = By.xpath("/html//div[@id='center_column']//strong[@class='dark']");
 	
 	// Constructor
 	public ColumnsContainer(WebDriver driver, Logger log) {
@@ -235,7 +244,7 @@ public class ColumnsContainer extends BasePageObject{
 	@Step("Selecting color {0}")
 	public void colorSelector(String color) {
 		log.info("Selecting color "+color);
-		WebElement availableColors = driver.findElement(colorPicker);
+		WebElement availableColors = find(colorPicker);
 		List <WebElement> colorList = availableColors.findElements(By.className("color_pick"));
 		for(WebElement c : colorList) {
 			if(c.getAttribute("name").equalsIgnoreCase(color)) {
@@ -252,5 +261,93 @@ public class ColumnsContainer extends BasePageObject{
 		log.info("Clicking the Add to cart button");
 		click(addToCartButton);
 	}
-
+	
+	/**
+	 * Clicks the Proceed to checkout button in the summary page
+	 */
+	@Step("Clicking the Proceed to checkout button in the summary page")
+	public void clickSummaryProceedToCheckoutButton() {
+		log.info("Clicking the Proceed to checkout button in the summary page");
+		click(summaryProceedToCheckoutButton);
+	}
+	
+	
+	/**
+	 * Clicks the Proceed to checkout button in the address page
+	 */
+	@Step("Clicking the Proceed to checkout button in the address page")
+	public void clickAddressProceedToCheckoutButton() {
+		log.info("Clicking the Proceed to checkout button in the address page");
+		click(addressProceedToCheckoutButton);
+	}
+	
+	/**
+	 * Checks the Terms of service check box if it is unchecked
+	 */
+	@Step("Check the Terms of service check box")
+	public void checkTermsCheckbox() {
+		log.info("Check the Terms of service check box");
+		WebElement checkbox = find(termsCheckbox);
+		if(!checkbox.isSelected()) {
+			click(termsCheckbox);
+		}
+	}
+	
+	
+	/**
+	 * Clicks the Proceed to checkout button in the shipping page
+	 */
+	@Step("Clicking the Proceed to checkout button in the shipping page")
+	public void clickShippingProceedToCheckoutButton() {
+		log.info("Clicking the Proceed to checkout button in the shipping page");
+		click(shippingProceedToCheckoutButton);
+	}
+	
+	/**
+	 * Advances the checkout process trough the different checkout pages
+	 */
+	public void autoProceedToCheckoutClicker() {
+		WebElement stepSelector = find(currentStepIndicator);
+		List <WebElement> steps = stepSelector.findElements(By.className("step_todo"));
+		if(steps.size()==4) {
+			clickSummaryProceedToCheckoutButton();
+		}else if(steps.size()==2) {
+			clickAddressProceedToCheckoutButton();
+		}else if(steps.size()==1) {
+			clickShippingProceedToCheckoutButton();
+		}
+	}
+	
+	/**
+	 * Selects one payment option based on the provided parameter, if the parameter is not provided it
+	 * selects 'bank wire' as default option
+	 * @param option payment method
+	 */
+	@Step("Clicking option '{0}' as payment method")
+	public void paymentSelector(String option) {
+		log.info("Clicking "+option+" as payment method");
+		if(option.contains("wire")) {
+			click(payBankWireButton);
+		}else if(option.contains("check")) {
+			click(payCheckButton);
+		}else {
+			log.info("Unable to identify the provided payment method, selecting 'bank wire' as default");
+			click(payBankWireButton);
+		}
+	}
+	
+	/**
+	 * Clicks the Confirm my order button
+	 */
+	@Step("Clicking Confirm my order button")
+	public void clickConfirmOrderButton() {
+		log.info("Clicking Confirm my order button");
+		click(orderConfirmationButton);
+	}
+	
+	public void verifyOrderConfirmationText() {
+		String actualOrderResult = find(orderResultText).getText();
+		
+	}
 }
+	
