@@ -7,7 +7,6 @@ import org.testng.annotations.Test;
 
 import com.automationpractice.base.BaseTest;
 import com.automationpractice.base.CsvDataProviders;
-import com.automationpractice.base.TestUtilities;
 import com.automationpractice.base.pagecontainers.ColumnsContainer;
 import com.automationpractice.base.pagecontainers.HeaderContainer;
 
@@ -87,10 +86,8 @@ public class OrderingTests extends BaseTest{
 		columns.clickConfirmOrderButton();
 		
 		// Assertions
-		// Verify order confimration
-		
-	
-		TestUtilities.sleep(50000);
+		// Verify order confirmation has been completed
+		columns.verifyOrderConfirmationText("complete");
 	}
 
 }

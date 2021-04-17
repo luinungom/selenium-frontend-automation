@@ -1,0 +1,13 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+  
+<suite name="Ordering suite" verbose="2" parallel = "tests" thread-count="3">
+  
+    <test name="Completing an order using Chrome browser">
+       <parameter name="browser" value="Chrome"/>
+    <classes>
+       <class name="com.automationpractice.OrderingTests" />
+    </classes>
+  </test>
+  
+</suite>
+

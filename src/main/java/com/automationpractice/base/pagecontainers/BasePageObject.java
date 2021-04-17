@@ -178,4 +178,15 @@ public class BasePageObject{
 		Assert.assertEquals(actualText, expectedText, "Found text "+actualText+" does not match expected text "+expectedText);
 	}
 	
+	/**
+	 * Checks if an specific string is contained in a sentence
+	 * @param actualText
+	 * @param textToBeFound
+	 */
+	@Step("Verifying if word {1} is contained in the sentence {0}")
+	protected void assertContainsText(String actualText, String textToBeFound) {
+		log.info("Verifying if word "+textToBeFound+" is contained in the sentence "+actualText);
+		Assert.assertTrue(actualText.contains(textToBeFound), "Error, word "+textToBeFound+" is mising in the sentence '"+actualText+"'");
+	}
+	
 }

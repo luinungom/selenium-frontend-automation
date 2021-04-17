@@ -345,9 +345,14 @@ public class ColumnsContainer extends BasePageObject{
 		click(orderConfirmationButton);
 	}
 	
-	public void verifyOrderConfirmationText() {
+	/**
+	 * Verifies if the order has been completed
+	 * @param textToBeFound
+	 */
+	@Step("Verifying if the order has been completed")
+	public void verifyOrderConfirmationText(String textToBeFound) {
 		String actualOrderResult = find(orderResultText).getText();
-		
+		assertContainsText(actualOrderResult, textToBeFound);
 	}
 }
 	
