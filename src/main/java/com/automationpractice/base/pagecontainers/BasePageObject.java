@@ -15,6 +15,11 @@ import org.testng.Assert;
 
 import io.qameta.allure.Step;
 
+/**
+ * Contains all testing common methods
+ * @author Luis Núñez
+ *
+ */
 public class BasePageObject{
 
 	protected WebDriver driver;
@@ -73,7 +78,7 @@ public class BasePageObject{
 	 * @param locator of the element to check visibility
 	 * @param timeInSeconds seconds to wait
 	 */
-	@Step("Waiting {1} seconds max until the element with locator {0} is clickable")
+	@Step("Waiting 30 seconds max until the element with locator {0} is clickable")
 	protected void waitElementToBeClickable(By locator) {
 		log.info("Waiting 30 seconds max until the element with locator "+locator+" is clickable");
 		for(int i = 0; i<2; i++) {
@@ -139,6 +144,11 @@ public class BasePageObject{
 	}
 	
 	
+	/**
+	 * It selects an option from a drop down based on the option's visible text
+	 * @param locator for the dropdown
+	 * @param value option's visible text
+	 */
 	@Step("Selecting value {1} from the drowpdown {0}")
 	protected void dropDownSelector(By locator, String value) {
 		log.info("Selecting value "+value+" from the drowpdown "+locator);
@@ -146,6 +156,10 @@ public class BasePageObject{
 		dropDown.selectByVisibleText(value);
 	}
 	
+	/**
+	 * Hovers over an element
+	 * @param locator for the element
+	 */
 	@Step("Hovering over {0} web element")
 	protected void hoverOver(By locator) {
 		log.info("Hovering over "+locator+" web element");
@@ -160,7 +174,7 @@ public class BasePageObject{
 	/**
 	 * Overloaded version of the hoverOver method to accept a WebElement as
 	 * parameter
-	 * @param element WebElement-
+	 * @param element WebElement
 	 */
 	@Step("\"Hovering over {0} web element\"")
 	protected void hoverOver(WebElement element) {
@@ -172,6 +186,12 @@ public class BasePageObject{
 	}
 	
 	// Assertions
+	
+	/**
+	 * Checks if 2 different texts match
+	 * @param actualText
+	 * @param expectedText
+	 */
 	@Step("Verifying if found text {0} matches expected text {1}")
 	protected void assertEqualText(String actualText, String expectedText) {
 		log.info("Verifying if found text \""+actualText+"\" matches expected text \""+expectedText+"\"");

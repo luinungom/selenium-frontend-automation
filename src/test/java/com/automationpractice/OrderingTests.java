@@ -76,7 +76,7 @@ public class OrderingTests extends BaseTest{
 		columns.autoProceedToCheckoutClicker();
 		// Clicking the Proceed to checkout button from the address page
 		columns.autoProceedToCheckoutClicker();
-		// Check the terms of service checkbox
+		// Check the terms of service check box
 		columns.checkTermsCheckbox();
 		// Clicking the Proceed to checkout button from the shipping page
 		columns.autoProceedToCheckoutClicker();

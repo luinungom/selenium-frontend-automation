@@ -8,7 +8,8 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 /**
- * Handles driver creation
+ * This class handles driver creation, it allows to generate different drivers
+ * depending on the browser
  */
 public class BrowserDriverFactory {
 
@@ -23,8 +24,8 @@ public class BrowserDriverFactory {
 	}
 	
 	/**
-	 * Loads the driver
-	 * @param browser browser that will be launched
+	 * Loads the driver, it uses an accessory WebDriverManager library for the driver binaries
+	 * @param browser that will be launched
 	 */
 	public WebDriver createDriver (String browser) {
 		

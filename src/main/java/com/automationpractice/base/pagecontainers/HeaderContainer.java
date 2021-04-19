@@ -28,6 +28,10 @@ public class HeaderContainer extends BasePageObject {
 		super(driver, log);
 	}
 	
+	/**
+	 * Performs a search in the search bar
+	 * @param text String
+	 */
 	@Step("Performing a search in the header search bar with text \"{0}\"")
 	public void headerSearchBar(String text) {
 		log.info("Performing a search in the header search bar with text \""+text+"\"");
@@ -35,12 +39,19 @@ public class HeaderContainer extends BasePageObject {
 		driver.findElement(searchBar).sendKeys(Keys.ENTER);
 	}
 	
+	/**
+	 * Clicks the Sign In link
+	 */
 	@Step("Clicking the Sign In link")
 	public void clickSigInLink() {
 		log.info("Clicking the Sign In link");
 		click(sigInLink);
 	}
 	
+	/**
+	 * Checks if the visible user name matches the expected one
+	 * @param expectedName String
+	 */
 	@Step("Verifying found user name against expected user name")
 	public void verifyUserName(String expectedName) {
 		log.info("Verifying found user name against expected user name");
@@ -48,6 +59,9 @@ public class HeaderContainer extends BasePageObject {
 		assertEqualText(actualUserName, expectedName);
 	}
 	
+	/**
+	 * Hover over the women link
+	 */
 	@Step("Hover over the women link")
 	public void hoverOverWomenLink() {
 		log.info("Hover over the women link");

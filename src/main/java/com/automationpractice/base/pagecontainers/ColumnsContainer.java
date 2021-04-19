@@ -11,7 +11,7 @@ import io.qameta.allure.Step;
 
 /**
  * This class contains all web elements and related actions that belong to 
- * the web page columns container (authentication).
+ * the web page columns container
  * 
  * @author Luis Núñez Gómez
  *
@@ -62,78 +62,129 @@ public class ColumnsContainer extends BasePageObject{
 	}
 	
 	// Methods
-	@Step("Inserting email address {0} in the textbox")
+	
+	/**
+	 * Inserts the email's text in the Create email text box
+	 * @param emailAddress String
+	 */
+	@Step("Inserting email address {0} in the text box")
 	public void insertCreateEmailAddress(String emailAddress) {
-		log.info("Inserting email address "+emailAddress+" in the textbox");
+		log.info("Inserting email address "+emailAddress+" in the text box");
 		cleanAndTypeTextbox(createEmailTextBox, emailAddress);
 	}
 	
+	/**
+	 * Clicks the Create account button
+	 */
 	@Step("Clicking the \"Create an account\" button")
 	public void clickCreateAccountButton() {
 		log.info("Clicking the \"Create an account\" button");
 		click(createAccountButton);
 	}
 	
-	@Step("Inserting user first name \"{0}\" in the textbox")
+	/**
+	 * Inserts the first name in the First Name text box
+	 * @param firstName String
+	 */
+	@Step("Inserting user first name \"{0}\" in the text box")
 	public void insertFirstName(String firstName) {
-		log.info("Inserting user first name "+firstName+" in the textbox");
+		log.info("Inserting user first name "+firstName+" in the text box");
 		cleanAndTypeTextbox(firstNameTextbox, firstName);
 	}
 	
-	@Step("Inserting user last name \"{0}\" in the textbox")
+	/**
+	 * Inserts the last name in the Last Name text box
+	 * @param lastName String
+	 */
+	@Step("Inserting user last name \"{0}\" in the text box")
 	public void insertLastName(String lastName) {
-		log.info("Inserting user last name \""+lastName+"\" in the textbox");
+		log.info("Inserting user last name \""+lastName+"\" in the text box");
 		cleanAndTypeTextbox(lastNameTextbox, lastName);
 	}
 	
-	@Step("Inserting user password \"{0}\" in the textbox")
+	/**
+	 * Inserts the password in the Password text box
+	 * @param password String
+	 */
+	@Step("Inserting user password \"{0}\" in the text box")
 	public void insertCreatePassword(String password) {
-		log.info("Inserting user password \""+password+"\" in the textbox");
+		log.info("Inserting user password \""+password+"\" in the text box");
 		cleanAndTypeTextbox(passwordTextbox, password);
 	}
 	
-	@Step("Inserting user address \"{0}\" in the textbox")
+	/**
+	 * Inserts the user address in the Address text box
+	 * @param address String
+	 */
+	@Step("Inserting user address \"{0}\" in the text box")
 	public void insertAddress(String address) {
-		log.info("Inserting user address \""+address+"\" in the textbox");
+		log.info("Inserting user address \""+address+"\" in the text box");
 		cleanAndTypeTextbox(addressTextbox, address);
 	}
 	
-	@Step("Inserting user city \"{0}\" in the textbox")
+	/**
+	 * Inserts the user city in the City text box
+	 * @param city String
+	 */
+	@Step("Inserting user city \"{0}\" in the text box")
 	public void insertCity(String city) {
-		log.info("Inserting user city \""+city+"\" in the textbox");
+		log.info("Inserting user city \""+city+"\" in the text box");
 		cleanAndTypeTextbox(cityTextbox, city);
 	}
 	
+	/**
+	 * Selects the Male option
+	 */
 	@Step("Selecting Male radio button")
 	public void selectMaleRadioButton() {
 		log.info("Selecting Male radio button");
 		click(maleRadioButton);
 	}
 	
+	/**
+	 * Selects the specified option in the State drop down
+	 * @param state String
+	 */
 	@Step("Selecting state {0} in the 'State' dropdown")
 	public void selectStateDropDown(String state) {
 		log.info("Selecting state "+state+" in the 'State' dropdown");
 		dropDownSelector(stateDropDown, state);
 	}
 	
+	/**
+	 * Inserts the zip code in the Zip Code text box
+	 * @param zipCode String
+	 */
 	@Step("Inserting user's zip code {0} in the textbox")
 	public void insertZipCode(String zipCode) {
 		log.info("Inserting the user's zip code "+zipCode+" in the textbox");
 		cleanAndTypeTextbox(zipCodeDropdown, zipCode);
 	}
 	
+	/**
+	 * Selects the country option in the Country drop down
+	 * @param country String
+	 */
 	@Step("Selecting country {0} in the 'Country' dropdown")
 	public void selectCountryDropDown(String country) {
 		log.info("Selecting country "+country+" in the 'Country' dropdown");
 		dropDownSelector(countryDropdown, country);
 	}
 	
+	/**
+	 * Inserts the mobile phone number in the Mobile Phone text box
+	 * @param phone String
+	 */
 	@Step("Inserting user's mobile phone {0} in the textbox")
 	public void insertMobilePhone(String phone) {
 		log.info("Inserting the user's mobile phone "+phone+"in the textbox");
 		cleanAndTypeTextbox(mobilePhoneTextbox, phone);
 	}
 	
+	/**
+	 * Inserts the address alias in the Address Alias text box
+	 * @param addressAlias
+	 */
 	@Step("Inserting the user's address alias \"{0}\" in the textbox")
 	public void insertAdressAlias(String addressAlias) {
 		log.info("Inserting the user's address alias \""+addressAlias+"\" in the textbox");

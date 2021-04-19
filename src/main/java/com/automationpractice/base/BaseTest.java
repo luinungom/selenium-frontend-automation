@@ -11,6 +11,13 @@ import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 
 @Listeners({ TestListener.class })
+/**
+ * This class loads and closes the driver instance, it also provides a getter
+ * method to get the driver's instance
+ * 
+ * @author Luis Núñez
+ *
+ */
 public class BaseTest {
 
 	/**
@@ -44,7 +51,7 @@ public class BaseTest {
 	}
 	
 	/**
-	 * Getter to get driver instances
+	 * Getter to get driver's instances
 	 * @return WebDriver;
 	 */
 	public WebDriver getDriver(){
