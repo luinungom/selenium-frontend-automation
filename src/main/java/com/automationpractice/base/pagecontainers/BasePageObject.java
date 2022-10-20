@@ -106,7 +106,6 @@ public class BasePageObject{
 	 */
 	//@Step("Waiting {0} second(s) max until condition {1} occurs")
 	protected void waitForExpectedCondition(ExpectedCondition<WebElement>condition, Integer timeOutInSeconds) {
-		//log.info("Waiting "+timeOutInSeconds+" second(s) until condition "+condition+" occurs");
 			WebDriverWait wait = new WebDriverWait(driver, timeOutInSeconds);
 			wait.until(condition);
 		}
@@ -146,7 +145,7 @@ public class BasePageObject{
 	
 	/**
 	 * It selects an option from a drop down based on the option's visible text
-	 * @param locator for the dropdown
+	 * @param locator for the drop down
 	 * @param value option's visible text
 	 */
 	@Step("Selecting value {1} from the drowpdown {0}")

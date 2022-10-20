@@ -34,7 +34,7 @@ public class ColumnsContainer extends BasePageObject{
 	By mobilePhoneTextbox = By.id("phone_mobile");
 	By addressAliasTextbox = By.id("alias");
 	By registerButton = By.id("submitAccount");
-	By welcomeAccountText = By.xpath("/html/body/div/div[2]/div/div[3]/div/p");
+	By welcomeAccountText = By.xpath("//p[@class='info-account']");
 	By emailTextbox = By.id("email");
 	By loginButton = By.id("SubmitLogin");
 	By incorrectCreateEmailErrorMessage = By.xpath("//div[@id='create_account_error']//li[.='Invalid email address.']");
@@ -48,13 +48,13 @@ public class ColumnsContainer extends BasePageObject{
 	By addToCartButton = By.xpath("//p[@id='add_to_cart']/button[@name='Submit']");
 	By currentStepIndicator = By.id("order_step");
 	By summaryProceedToCheckoutButton = By.xpath("//div[@id='center_column']//a[@title='Proceed to checkout']");
-	By addressProceedToCheckoutButton = By.xpath("//div[@id='center_column']/form[@action='http://automationpractice.com/index.php?controller=order']//button/span");
+	By addressProceedToCheckoutButton = By.xpath("//button[contains(@class,'button') and @name='processAddress']");
 	By termsCheckbox = By.id("uniform-cgv");
 	By shippingProceedToCheckoutButton = By.xpath("//form[@id='form']//button[@name='processCarrier']/span");
 	By payBankWireButton = By.linkText("Pay by bank wire (order processing will be longer)");
 	By payCheckButton = By.linkText("Pay by check (order processing will be longer)");
 	By orderConfirmationButton = By.xpath("//p[@id='cart_navigation']/button[@type='submit']");
-	By orderResultText = By.xpath("/html//div[@id='center_column']//strong[@class='dark']");
+	By orderResultText = By.xpath("//p[@class='cheque-indent']//strong[@class='dark']");
 	
 	// Constructor
 	public ColumnsContainer(WebDriver driver, Logger log) {

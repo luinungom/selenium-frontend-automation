@@ -18,9 +18,10 @@ public class HeaderContainer extends BasePageObject {
 	By logo = By.id("header_logo");
 	By searchBar = By.id("search_query_top");
 	By sigInLink = By.linkText("Sign in");
-	By userName = By.xpath("/html/body/div/div[1]/header/div[2]/div/div/nav/div[1]/a");
+	By userName = By.xpath("//a[@class='login']");
+	By logedUserName = By.xpath("//a[@class='account']");
 	By womenLink = By.linkText("WOMEN");
-	By tShirtLink = By.xpath("//div[@id='block_top_menu']/ul/li[1]/ul/li[1]/ul//a[@title='T-shirts']");
+	By tShirtLink = By.xpath("//ul[contains(@class,'submenu-container')]//descendant::a[@title='T-shirts']");
 	By checkOutButton = By.linkText("Proceed to checkout");
 
 	// Constructor
@@ -55,7 +56,7 @@ public class HeaderContainer extends BasePageObject {
 	@Step("Verifying found user name against expected user name")
 	public void verifyUserName(String expectedName) {
 		log.info("Verifying found user name against expected user name");
-		String actualUserName = find(userName).getText();
+		String actualUserName = find(logedUserName).getText();
 		assertEqualText(actualUserName, expectedName);
 	}
 	

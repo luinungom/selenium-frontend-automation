@@ -56,12 +56,12 @@ public class TestListener implements ITestListener {
 		
 		//Allure ScreenshotRobot and SaveTestLog
 		if (driver instanceof WebDriver) {
-			System.out.println("Screenshot captures for test case: "+result.getInstanceName().toString().trim());
+			log.info("Screenshot captures for test case: "+result.getInstanceName().toString().trim());
 			saveScreenshotPNG(driver);
 		}
 		
 		// Save a log on allure
-		saveTextLog(result.getInstanceName().toString().trim() + "failed, screenhot taken!");
+		saveTextLog(result.getInstanceName().trim() + "failed, screenhot taken!");
 	  }
 
 	  /**
@@ -117,7 +117,7 @@ public class TestListener implements ITestListener {
 		log.info("[ALL " + testName + " FINISHED]");
 	  }
 	
-	// Attachements for Allure reports
+	// Attachments for Allure reports
 	@Attachment (value = "Page screenshot", type = "image/png")
 	public byte[] saveScreenshotPNG (WebDriver driver) {
 		return ((TakesScreenshot)driver).getScreenshotAs(OutputType.BYTES);

@@ -5,7 +5,7 @@
 - 🗂️ Data driven (csv).
 - 🤖 Webdriver binaries management, automated using webdrivermanager library.
 
-The target website is http://automationpractice.com.
+The target website is http://automationpractice.com
 
 Automated tests (so far):
 1. Create a new user in the system.
