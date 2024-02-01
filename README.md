@@ -12,5 +12,3 @@ Automated tests (so far):
 2. Login using an existing user.
 3. Login using an incorrect user (negative test example).
 4. Order a product (e2e test example).
-
-![visitors](https://visitor-badge.glitch.me/badge?page_id=luinungom.selenium-frontend-automation)
