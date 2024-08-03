@@ -3,7 +3,7 @@
 - 📐 'Page Component Object Model' design pattern. 
 - ✨ Advanced reports with Allure framework. 
 - 🗂️ Data driven (csv).
-- 🤖 Webdriver binaries management, automated using webdrivermanager library.
+- 🤖 Updated to Selenium 4.
 
 The target website is http://automationpractice.com
 

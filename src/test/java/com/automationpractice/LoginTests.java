@@ -1,19 +1,17 @@
 package com.automationpractice;
 
-import java.util.Map;
-import java.util.concurrent.TimeUnit;
-
-import org.testng.annotations.Test;
-
 import com.automationpractice.base.BaseTest;
 import com.automationpractice.base.CsvDataProviders;
 import com.automationpractice.base.pagecontainers.ColumnsContainer;
 import com.automationpractice.base.pagecontainers.HeaderContainer;
-
 import io.qameta.allure.Description;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.Story;
+import org.testng.annotations.Test;
+
+import java.time.Duration;
+import java.util.Map;
 
 /**
  * This class contains all user's management automated steps for the tests.
@@ -42,16 +40,16 @@ public class LoginTests extends BaseTest{
 		String phone = testData.get("phone");
 		String addressAlias = testData.get("addressAlias");
 		
-		// Instance necessary web site components		
+		// Instance necessary website components
 		HeaderContainer header = new HeaderContainer(driver, log);
 		ColumnsContainer columns = new ColumnsContainer(driver, log);
 		
 		// Automated Actions		
-		// Navigate to the web site
+		// Navigate to the website
 		driver.get("http://automationpractice.com/index.php");
 		// Add implicit wait
-		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-		// Clicks in the Sign In button
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+		// Clicks in the SignIn button
 		header.clickSigInLink();
 		// Filling the 'Email Address' text box
 		columns.insertCreateEmailAddress(email);
@@ -99,22 +97,22 @@ public class LoginTests extends BaseTest{
 		String firstName = testData.get("firstName");
 		String lastName = testData.get("lastName");
 		
-		// Instance necessary web site components		
+		// Instance necessary website components
 		HeaderContainer header = new HeaderContainer(driver, log);
 		ColumnsContainer columns = new ColumnsContainer(driver, log);
 		
 		// Automated Actions		
-		// Navigate to the web site
+		// Navigate to the website
 		driver.get("http://automationpractice.com/index.php");
 		// Add implicit wait
-		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-		// Clicking in the Sign In button
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+		// Clicking in the SignIn button
 		header.clickSigInLink();
 		// Inserting user's email
 		columns.insertEmailAddress(email);
 		// Inserting user's password
 		columns.insertPassword(password);
-		// Clicking the Sign In button
+		// Clicking the SignIn button
 		columns.clickSignInButton();
 		
 		// Assertions
@@ -128,18 +126,18 @@ public class LoginTests extends BaseTest{
 	@Description("Test Description: This test tries to create a new user using an incorrect email")
 	public void incorrectEmail() {
 		
-		// Instance necessary web site components		
+		// Instance necessary website components
 		HeaderContainer header = new HeaderContainer(driver, log);
 		ColumnsContainer columns = new ColumnsContainer(driver, log);
 		
 		String expectedErrorMessage = "Invalid email address.";
 		
 		// Automated Actions		
-		// Navigate to the web site
+		// Navigate to the website
 		driver.get("http://automationpractice.com/index.php");
 		// Add implicit wait
-		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-		// Clicking in the Sign In button
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+		// Clicking in the SignIn button
 		header.clickSigInLink();
 		// Inserting user's email
 		columns.insertCreateEmailAddress("incorrectEmail@fail");

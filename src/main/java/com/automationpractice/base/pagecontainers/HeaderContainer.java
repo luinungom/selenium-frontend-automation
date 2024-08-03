@@ -41,7 +41,7 @@ public class HeaderContainer extends BasePageObject {
 	}
 	
 	/**
-	 * Clicks the Sign In link
+	 * Clicks the SignIn link
 	 */
 	@Step("Clicking the Sign In link")
 	public void clickSigInLink() {
@@ -50,7 +50,7 @@ public class HeaderContainer extends BasePageObject {
 	}
 	
 	/**
-	 * Checks if the visible user name matches the expected one
+	 * Checks if the visible username matches the expected one
 	 * @param expectedName String
 	 */
 	@Step("Verifying found user name against expected user name")

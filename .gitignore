@@ -3,3 +3,5 @@ allure-results/
 target/surefire-reports/
 /target/
 .settings/
+.idea
+
