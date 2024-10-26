@@ -338,4 +338,61 @@ public class BasePageObject {
         Assert.assertTrue(percentage >= similarityPercentage, "Images are the same at " + similarityPercentage);
     }
 
+    /**
+     * Excecutes a JS script in a element.
+     *
+     * @param script Script to be executed.
+     * @param element target.
+     */
+    @Step("Executing JavaScript on element")
+    protected void executeJScript(String script, WebElement element) {
+        log.info("Executing JavaScript on element");
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript(script, element);
+    }
+
+    /**
+     * Creates an independent browser window, switches the driver's context to the new window, delete all cookies and
+     * maximizes the window.
+     *
+     * @return the window handle of the newly created window.
+     */
+    @Step("Creating a new browser window")
+    protected String openSecondBrowser() {
+        log.info("Creating a new browser window");
+        driver.switchTo().newWindow(WindowType.WINDOW);
+        driver.manage().deleteAllCookies();
+        driver.manage().window().maximize();
+        return driver.getWindowHandle();
+    }
+
+    /**
+     * Switches the driver contexts to the specified window handle.
+     *
+     * @param windowToHandle the window handle to switch to.
+     */
+    @Step("Switching the driver contect to the specified window handle")
+    protected void switchWindow(String windowToHandle) {
+        log.info("Switching the driver context to the specified window handle");
+        driver.switchTo().window(windowToHandle);
+    }
+
+    /**
+     * Retrieves the current window handle of the driver.
+     *
+     * @return the current window handle.
+     */
+    protected String getWindowHandle() {
+        return driver.getWindowHandle();
+    }
+
+    /**
+     * Refresh the browser.
+     */
+    @Step("Refreshing the browser ")
+    protected void refreshBrowser() {
+        log.info("Refreshing the browser");
+        driver.navigate().refresh();
+    }
+
 }

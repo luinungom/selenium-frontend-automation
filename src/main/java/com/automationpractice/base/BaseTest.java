@@ -14,7 +14,7 @@ import org.testng.annotations.Parameters;
 
 /**
  * This class loads and closes the driver instance, it also provides a getter
- * method to get the driver's instance
+ * method to get the driver's instance.
  *
  * @author Luis Núñez
  *
@@ -55,7 +55,7 @@ public class BaseTest {
 	 * Getter to get driver's instances
 	 * @return WebDriver;
 	 */
-	public WebDriver getDriver(){
+	private WebDriver getDriver(){
 		return driver;
 	}
 }
