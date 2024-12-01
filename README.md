@@ -4,7 +4,7 @@
 - ✨ Advanced reports with Allure framework. 
 - 🗂️ Data driven (csv).
 - 🤖 Updated to Selenium 4.
-- Able to log browser console logs when using Chrome.
+- ✍ Able to log browser console logs when using Chrome.
 
 The target website is http://automationpractice.com
 
