@@ -55,7 +55,7 @@ public class BaseTest {
 	 * Getter to get driver's instances
 	 * @return WebDriver;
 	 */
-	private WebDriver getDriver(){
+	public WebDriver getDriver(){
 		return driver;
 	}
 }
